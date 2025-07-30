@@ -43,29 +43,30 @@ target_include_directories(CapturinoPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ge
 target_link_libraries(CapturinoPlugin PUBLIC ${COMPATIBILITY_LAYER})
 target_include_directories(CapturinoPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/compat)
 
-# generate the documentation
-# Custom command to convert .svg files to .pdf using Inkscape
-file(GLOB SVG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/docsrcs/*.svg)
-foreach(SVG_FILE ${SVG_FILES})
-    get_filename_component(SVG_FILENAME ${SVG_FILE} NAME_WE)
-    add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf
-        COMMAND inkscape ${SVG_FILE} --export-filename=${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf --export-pdf-version=1.5
-        DEPENDS ${SVG_FILE}
-        COMMENT "Converting ${SVG_FILE} to PDF using Inkscape"
-        VERBATIM
-    )
-    list(APPEND PDF_FILES ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf)
-endforeach()
-
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/docs
-    COMMAND doxygen ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
-    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/latex make
-    DEPENDS ${PDF_FILES}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Generating documentation with Doxygen"
-    VERBATIM
-)
-
-add_custom_target(docs ALL DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/docs)
+# FOR NOW DO NOT BUILD THE DOCS WITH GITHUB ACTIONS
+# # generate the documentation
+# # Custom command to convert .svg files to .pdf using Inkscape
+# file(GLOB SVG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/docsrcs/*.svg)
+# foreach(SVG_FILE ${SVG_FILES})
+#     get_filename_component(SVG_FILENAME ${SVG_FILE} NAME_WE)
+#     add_custom_command(
+#         OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf
+#         COMMAND inkscape ${SVG_FILE} --export-filename=${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf --export-pdf-version=1.5
+#         DEPENDS ${SVG_FILE}
+#         COMMENT "Converting ${SVG_FILE} to PDF using Inkscape"
+#         VERBATIM
+#     )
+#     list(APPEND PDF_FILES ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/imgs/${SVG_FILENAME}.pdf)
+# endforeach()
+# 
+# add_custom_command(
+#     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/docs
+#     COMMAND doxygen ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+#     COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR}/build/docs/latex make
+#     DEPENDS ${PDF_FILES}
+#     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+#     COMMENT "Generating documentation with Doxygen"
+#     VERBATIM
+# )
+# 
+# add_custom_target(docs ALL DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/docs)

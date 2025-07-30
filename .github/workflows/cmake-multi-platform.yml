@@ -55,8 +55,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install inkscape
-      run: sudo apt-get install inkscape
+#    TODO: probably find some way to use a custom image, so that installing all that auxiliary programs is not necessary
+#    - name: Install inkscape
+#      run: sudo apt-get install inkscape
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.

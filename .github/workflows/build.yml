@@ -1,18 +1,7 @@
-name: Create and package release
+name: Build
 
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Create release'
-        # Default value if no value is explicitly provided
-        default: 'releasetag'
-        # Input has to be provided for the workflow to run
-        required: true
-        # The data type of the input
-        type: string
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -42,16 +31,3 @@ jobs:
       # Execute tests defined by the CMake configuration.
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
-    
-    - name: release
-      uses: actions/create-release@v1
-      id: create_release
-      with:
-        draft: false
-        prerelease: false
-        release_name: ${{ inputs.name }}
-        tag_name: ${{ github.ref }}
-        body_path: CHANGELOG.md
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-

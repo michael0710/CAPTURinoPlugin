@@ -1,0 +1,109 @@
+/**
+ * \defgroup Plugin Wireshark Plugin
+ * 
+ * \image latex WiresharkPlugin_SW-Arch.pdf
+ * 
+ * \attention This plugin depends on the existence of C standard library
+ *            functions.
+ */
+
+/* C a t e g o r y   g r o u p s * * * * * * * * * * * * * * * * * * * * * * */
+
+/**
+ * \defgroup OsCompLayer OS Compatibility Layer
+ * \ingroup Plugin
+ * \brief Abstracts OS dependent functionalities for the plugin.
+ */
+ 
+/**
+ * \defgroup LibModules Library Modules
+ * \ingroup Plugin
+ * \brief Contains OS independent library modules.
+ */
+
+/** 
+ * \defgroup CommModules Communication Modules
+ * \ingroup Plugin
+ * \brief Contains modules for the communication with the CAPTURino hardware.
+ */
+
+/** 
+ * \defgroup ExtcapModules Extcap Modules
+ * \ingroup Plugin
+ * \brief Contains modules which provide the interface defined by the Extcap standard.
+ */
+ 
+/* C o m p o n e n t   g r o u p s * * * * * * * * * * * * * * * * * * * * * */
+/**
+ * \defgroup main
+ * \ingroup OsCompLayer
+ * \brief Main entry point for the extcap interface.
+ */
+
+/**
+ * \defgroup console
+ * \ingroup OsCompLayer
+ * \brief Provides standard console input and output.
+ */
+
+/**
+ * \defgroup serialhandling
+ * \ingroup OsCompLayer
+ * \brief Provides functions to read and write from or to a serial port.
+ */
+
+/**
+ * \defgroup serialhandling
+ * \ingroup OsCompLayer
+ * \brief Provides functions to read and write from or to a serial port.
+ */
+
+/**
+ * \defgroup pipehandling
+ * \ingroup OsCompLayer
+ * \brief Provides functions to read and write from or to a pipe.
+ */
+
+/**
+ * \defgroup systemutils
+ * \ingroup OsCompLayer
+ * \brief Provides os dependent system utilities necessary for the plugin.
+ */
+
+/**
+ * \defgroup diagnosis
+ * \ingroup OsCompLayer
+ * \brief Provides functions to write log messages to a file.
+ * \details This module is only dependent on OS API and does not have cross
+ *          references within the compatibility layer.
+ */
+
+/**
+ * \defgroup argparser
+ * \ingroup LibModules
+ * \brief Provides functions to parse the given command line arguments for
+ *        certain parameters.
+ */
+
+/**
+ * \defgroup genericutils
+ * \ingroup LibModules
+ * \brief Provides generic utility functions.
+ */
+
+/**
+ * \defgroup linkedlist
+ * \ingroup LibModules
+ * \brief Provides the functionality of a linked list.
+ */
+
+/**
+ * \defgroup ringbuf
+ * \ingroup LibModules
+ * \brief Provides functions to manage a ring buffer.
+ */
+
+/**
+ * \defgroup capturinoconn
+ * \ingroup CommModules
+ */

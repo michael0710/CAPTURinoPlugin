@@ -152,8 +152,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [win64_build, ubuntu_build]
     steps:
-    #  - name: Checkout code
-    #    uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: get tag string
         id: get-tag
         uses: actions/github-script@0.9.0

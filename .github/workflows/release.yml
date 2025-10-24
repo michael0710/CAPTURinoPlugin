@@ -29,12 +29,10 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C Release
-      - name: Show me where I am 1
-        run: ls -l
-      - name: Show me where I am 2
-        run: ls build -l
-      - name: Rename Ubuntu Binary
-        run: mv build/CapturinoPlugin build/CAPTURinoPlugin_ubuntu
+      - name: Echo info
+        run: echo ${{ github.ref }}
+      - name: tar.gz Ubuntu Binary
+        run: tar -czf CAPTURinoPlugin_ubuntu_${github.ref:10}.tar.gz build/CapturinoPlugin
   # TODO uploading the artifact here and downloading it later takes a lot of time
   #    - uses: actions/upload-artifact@v4
   #      with:
@@ -78,6 +76,8 @@ jobs:
   # upload that artifact as 
   # name: CAPTURinoPlugin win64 ${{ github.ref }}
   #######################
+  #    - name: zip Windows Binary
+  #      run: zip CAPTURinoPlugin_win64_${{github.ref}} build/CapturinoPlugin 
 
       - name: Create Release
         id: create_release
@@ -143,6 +143,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./build/CAPTURinoPlugin_ubuntu
-          asset_name: CAPTURinoPlugin_ubuntu_${{ github.ref }}.zip
-          asset_content_type: application/zip
+          asset_path: CAPTURinoPlugin_ubuntu_${github.ref:10}.tar.gz
+          asset_name: CAPTURinoPlugin_ubuntu_${github.ref:10}.tar.gz
+          asset_content_type: application/gzip

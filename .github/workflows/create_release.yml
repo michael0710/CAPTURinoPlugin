@@ -174,11 +174,16 @@ jobs:
         with:
           name: CAPTURinoPlugin_win64
 
+      - name: Get directory info
+        run: ls -l
+      - name: Get extra dir info
+        run: ls ./CAPTURinoPlugin -l
+
       - name: zip Windows Binary
-        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip build/Release/CapturinoPlugin.exe
+        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip CAPTURinoPlugin/build/Release/CapturinoPlugin.exe
 
       - name: gzip Ubuntu Binary
-        run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz build/CapturinoPlugin
+        run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz CAPTURinoPlugin/build/CapturinoPlugin
 
       - name: Create Release
         id: create_release

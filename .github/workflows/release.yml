@@ -34,7 +34,7 @@ jobs:
       - name: Show me where I am 2
         run: ls build -l
       - name: Rename Ubuntu Binary
-        run: mv build/CAPTURinoPlugin build/CAPTURinoPlugin_ubuntu
+        run: mv build/CapturinoPlugin build/CAPTURinoPlugin_ubuntu
   # TODO uploading the artifact here and downloading it later takes a lot of time
   #    - uses: actions/upload-artifact@v4
   #      with:

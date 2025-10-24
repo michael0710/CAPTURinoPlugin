@@ -10,25 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo info
-        run: echo ${{ github.ref }}
+        run: echo "Trying to use mingw"
 
-      - id: get-tag
-        uses: actions/github-script@0.9.0
-        with:
-          tag_name: ${{ github.ref }}
-          script: |
-                const tagName = core.getInput('tag_name', { required: true });
-                const tag = tagName.replace('refs/tags/', '');
-                core.setOutput('tag', tag)
-      - run: echo "${{steps.get-tag.outputs.tag}}"
-
-      - name: Echo modified info
-        run: |
-          testvar = ${{github.ref}}
-          echo ${testvar}
-          echo ${testvar:0:4}
-          echo ${testvar:8}
-      - name: Echo second modified info
-        run: echo {${{github.ref}}:10}  
-      - name: Echo another modified info
-        run: echo ${github.ref:10}
+      - name: Mingw
+        run: mingw-w64 --help

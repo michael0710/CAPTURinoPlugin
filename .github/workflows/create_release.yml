@@ -168,11 +168,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: CAPTURinoPlugin_ubuntu
+          path: ./ubuntu/
 
       - name: Download Windows Binary
         uses: actions/download-artifact@v4
         with:
           name: CAPTURinoPlugin_win64
+          path: ./win64/
 
       - name: Get directory info
         run: ls -l
@@ -180,10 +182,10 @@ jobs:
         run: ls ./CAPTURinoPlugin -l
 
       - name: zip Windows Binary
-        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip CAPTURinoPlugin/build/Release/CapturinoPlugin.exe
+        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip ./win64/CapturinoPlugin.exe
 
       - name: gzip Ubuntu Binary
-        run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz CAPTURinoPlugin/build/CapturinoPlugin
+        run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz ./ubuntu/CapturinoPlugin
 
       - name: Create Release
         id: create_release

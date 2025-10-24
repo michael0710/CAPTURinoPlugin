@@ -29,6 +29,10 @@ jobs:
         # Execute tests defined by the CMake configuration.
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C Release
+      - name: Show me where I am 1
+        run: ls -l
+      - name: Show me where I am 2
+        run: ls build -l
       - name: Rename Ubuntu Binary
         run: mv build/CAPTURinoPlugin build/CAPTURinoPlugin_ubuntu
   # TODO uploading the artifact here and downloading it later takes a lot of time

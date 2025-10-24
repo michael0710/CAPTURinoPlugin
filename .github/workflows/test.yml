@@ -15,9 +15,11 @@ jobs:
       - id: get-tag
         uses: actions/github-script@0.9.0
         with:
+          tag_name: ${{ github.ref }}
           script: |
-                 const tag = context.github.ref.value.split('/')[2]
-                 core.setOutput('tag', tag)
+                const tagName = core.getInput('tag_name', { required: true });
+                const tag = tagName.replace('refs/tags/', '');
+                core.setOutput('tag', tag)
       - run: echo "${{steps.get-tag.outputs.tag}}"
 
       - name: Echo modified info

@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+name: Test Workflow
+
+jobs:
+  build:
+    name: Build Upload Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo info
+        run: echo ${{ github.ref }}
+      - name: Echo modified info
+        run: echo {${{github.ref}}:10}  
+      - name: Echo another modified info
+        run: echo ${github.ref:10}

@@ -47,7 +47,7 @@ jobs:
     
         # A file, directory or wildcard pattern that describes what to upload
         # Required.
-        path: build/Release/CapturinoPlugin
+        path: build/Release/CapturinoPlugin.exe
     
         # The desired behavior if no files are found using the provided path.
         # Available Options:
@@ -175,7 +175,7 @@ jobs:
           name: CAPTURinoPlugin_win64
 
       - name: zip Windows Binary
-        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip build/Release/CapturinoPlugin 
+        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip build/Release/CapturinoPlugin.exe
 
       - name: gzip Ubuntu Binary
         run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz build/CapturinoPlugin

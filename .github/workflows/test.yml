@@ -16,7 +16,7 @@ jobs:
         uses: actions/github-script@0.9.0
         with:
           script: |
-                 const tag = context.payload.client_payload.value.split('/')[2]
+                 const tag = context.github.ref.value.split('/')[2]
                  core.setOutput('tag', tag)
       - run: echo "${{steps.get-tag.outputs.tag}}"
 

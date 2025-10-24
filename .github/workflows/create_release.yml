@@ -190,11 +190,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          # TODO: get the release notes from a CHANGELOG.md file automatically from the file in the specified tag
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          body_path: CHANGELOG.md
           draft: false
           prerelease: true
 

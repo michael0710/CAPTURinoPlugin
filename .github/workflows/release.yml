@@ -30,7 +30,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest -C Release
       - name: Rename Ubuntu Binary
-        run: mv CAPTURinoPlugin CAPTURinoPlugin_ubuntu
+        run: mv build/CAPTURinoPlugin build/CAPTURinoPlugin_ubuntu
   # TODO uploading the artifact here and downloading it later takes a lot of time
   #    - uses: actions/upload-artifact@v4
   #      with:
@@ -139,6 +139,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./CAPTURinoPlugin_ubuntu
+          asset_path: ./build/CAPTURinoPlugin_ubuntu
           asset_name: CAPTURinoPlugin_ubuntu_${{ github.ref }}.zip
           asset_content_type: application/zip

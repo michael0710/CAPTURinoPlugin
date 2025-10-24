@@ -11,6 +11,12 @@ jobs:
       - name: Echo info
         run: echo ${{ github.ref }}
       - name: Echo modified info
+        run: |
+          testvar = ${{github.ref}}
+          echo ${testvar}
+          echo ${testvar:0:4}
+          echo ${testvar:8}
+      - name: Echo second modified info
         run: echo {${{github.ref}}:10}  
       - name: Echo another modified info
         run: echo ${github.ref:10}

@@ -4,12 +4,22 @@ on:
 name: Test Workflow
 
 jobs:
+  
   build:
     name: Build Upload Release
     runs-on: ubuntu-latest
     steps:
       - name: Echo info
         run: echo ${{ github.ref }}
+
+      - id: get-tag
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+                 const tag = context.payload.client_payload.value.split('/')[2]
+                 core.setOutput('tag', tag)
+      - run: echo "${{steps.get-tag.outputs.tag}}"
+
       - name: Echo modified info
         run: |
           testvar = ${{github.ref}}

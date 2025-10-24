@@ -40,14 +40,14 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}}
       
     - name: get tag string
-        id: get-tag
-        uses: actions/github-script@0.9.0
-        with:
-          tag_name: ${{ github.ref }}
-          script: |
-                const tagName = core.getInput('tag_name', { required: true });
-                const tag = tagName.replace('refs/tags/', '');
-                core.setOutput('tag', tag)
+      id: get-tag
+      uses: actions/github-script@0.9.0
+      with:
+        tag_name: ${{ github.ref }}
+        script: |
+              const tagName = core.getInput('tag_name', { required: true });
+              const tag = tagName.replace('refs/tags/', '');
+              core.setOutput('tag', tag)
                 
     - name: zip Binary
       run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip build/Release/CapturinoPlugin 
@@ -119,14 +119,14 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}}
     
     - name: get tag string
-        id: get-tag
-        uses: actions/github-script@0.9.0
-        with:
-          tag_name: ${{ github.ref }}
-          script: |
-                const tagName = core.getInput('tag_name', { required: true });
-                const tag = tagName.replace('refs/tags/', '');
-                core.setOutput('tag', tag)
+      id: get-tag
+      uses: actions/github-script@0.9.0
+      with:
+        tag_name: ${{ github.ref }}
+        script: |
+              const tagName = core.getInput('tag_name', { required: true });
+              const tag = tagName.replace('refs/tags/', '');
+              core.setOutput('tag', tag)
     
     - name: gzip Binary
       run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz build/CapturinoPlugin

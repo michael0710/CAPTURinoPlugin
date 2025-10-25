@@ -6,6 +6,7 @@ cmake_minimum_required(VERSION 3.13.0)
 project(CapturinoPlugin
         VERSION 0.1.2
         LANGUAGES C)
+set(PROJECT_VERSION_STABILITY "alpha")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
                ${CMAKE_CURRENT_SOURCE_DIR}/version.h

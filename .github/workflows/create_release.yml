@@ -177,10 +177,16 @@ jobs:
           path: ./win64/
 
       - name: zip Windows Binary
-        run: zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip ./win64/CapturinoPlugin.exe
-
+        run: |
+           mv ./win64/CapturinoPlugin.exe ./CapturinoPlugin.exe
+           zip CAPTURinoPlugin_win64_${{steps.get-tag.outputs.tag}}.zip ./CapturinoPlugin.exe
+           rm ./CapturinoPlugin.exe
+           
       - name: gzip Ubuntu Binary
-        run: tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz ./ubuntu/CapturinoPlugin
+        run: |
+           mv ./ubuntu/CapturinoPlugin ./CapturinoPlugin
+           tar -czf CAPTURinoPlugin_ubuntu_${{steps.get-tag.outputs.tag}}.tar.gz ./CapturinoPlugin
+           rm ./CapturinoPlugin
 
       - name: Create Release
         id: create_release

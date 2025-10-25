@@ -49,6 +49,7 @@
 #include "diagnosis.h"
 #include "extcapmngr.h"
 #include "genericutils.h"
+#include "version.h"
 
 /* M O D U L E   H E A D E R   I N C L U D E * * * * * * * * * * * * * * * * */
 #include "generic_main.h"
@@ -58,7 +59,10 @@
  *************************************************************************** */
 
 /* L O C A L   C O N F I G   D E F I N I T I O N S * * * * * * * * * * * * * */
-#define VERSION_STR "0.1"
+#define VERSION_STR        CMAKE_PROJECT_VERSION_MAJOR\
+                        "."CMAKE_PROJECT_VERSION_MINOR\
+                        "."CMAKE_PROJECT_VERSION_PATCH\
+                        "-"CMAKE_PROJECT_VERSION_STABILITY
 
 /* L O C A L   M A C R O   D E F I N I T I O N S * * * * * * * * * * * * * * */
 

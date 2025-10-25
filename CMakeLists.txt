@@ -3,7 +3,14 @@
 # to link libraries against executables in another directory
 cmake_minimum_required(VERSION 3.13.0)
 
-project(CapturinoPlugin VERSION 0.1.0 LANGUAGES C)
+project(CapturinoPlugin
+        VERSION 0.1.2
+        LANGUAGES C)
+set(PROJECT_VERSION_STABILITY "alpha")
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
+               ${CMAKE_CURRENT_SOURCE_DIR}/version.h
+               @ONLY)
 
 # gather platform specific source files
 if (CMAKE_C_COMPILER_ID STREQUAL "MSVC")

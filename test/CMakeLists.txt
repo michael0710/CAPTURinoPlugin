@@ -1,1 +1,1 @@
-include(tests.ctest)
+include(releasetests.ctest)

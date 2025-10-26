@@ -50,6 +50,8 @@ target_include_directories(CapturinoPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ge
 target_link_libraries(CapturinoPlugin PUBLIC ${COMPATIBILITY_LAYER})
 target_include_directories(CapturinoPlugin PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/compat)
 
+include(CTest)
+add_subdirectory(test)
 # FOR NOW DO NOT BUILD THE DOCS WITH GITHUB ACTIONS
 # # generate the documentation
 # # Custom command to convert .svg files to .pdf using Inkscape

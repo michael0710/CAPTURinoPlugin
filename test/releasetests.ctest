@@ -1,0 +1,37 @@
+# Test with empty arguments
+add_test(NAME Release_EmptyArgs
+          COMMAND ${CMAKE_CURRENT_BINARY_DIR}/../CapturinoPlugin${CMAKE_EXECUTABLE_SUFFIX})
+set_property(TEST Release_EmptyArgs
+              PROPERTY PASS_REGULAR_EXPRESSION "CAPTURino interface for Wireshark\n"
+                                              "Version ${PROJECT_VERSION}-${PROJECT_VERSION_STABILITY}")
+
+# Test with argument "--extcap-interfaces"
+add_test(NAME Release_ArgExtcapInterfacesOnly
+          COMMAND ${CMAKE_CURRENT_BINARY_DIR}/../CapturinoPlugin${CMAKE_EXECUTABLE_SUFFIX} --extcap-interfaces)
+# TODO: a extcap interface can define multiple interfaces, i.e. it must contain at least one line beginning with "interface..." and can have an infinite amount
+set_property(TEST Release_ArgExtcapInterfacesOnly
+              PROPERTY PASS_REGULAR_EXPRESSION "extcap {version=[0-9.]+}{help=[a-zA-Z0-9 :/_-]+}\n"
+                                              "interface {value=[a-zA-Z0-9]+}{display=[a-zA-Z0-9 ]+}\n"
+                                              "interface {value=[a-zA-Z0-9]+}{display=[a-zA-Z0-9 ]+}")
+
+# Test with argument "--extcap-interfaces --extcap-version=2.9"
+add_test(NAME Release_ArgExtcapInterfacesVersion
+          COMMAND ${CMAKE_CURRENT_BINARY_DIR}/../CapturinoPlugin${CMAKE_EXECUTABLE_SUFFIX} --extcap-interfaces --extcap-version=2.9)
+# TODO: a extcap interface can define multiple interfaces, i.e. it must contain at least one line beginning with "interface..." and can have an infinite amount
+set_property(TEST Release_ArgExtcapInterfacesVersion
+              PROPERTY PASS_REGULAR_EXPRESSION "extcap {version=[0-9.]+}{help=[a-zA-Z0-9 :/_-]+}\n"
+                                              "interface {value=[a-zA-Z0-9]+}{display=[a-zA-Z0-9 ]+}\n"
+                                              "interface {value=[a-zA-Z0-9]+}{display=[a-zA-Z0-9 ]+}")
+
+# Test with arguments "--extcap-interface --extcap-dlts"
+add_test(NAME Release_ArgExtcapInterfaceCapturinoDlt
+          COMMAND ${CMAKE_CURRENT_BINARY_DIR}/../CapturinoPlugin${CMAKE_EXECUTABLE_SUFFIX} --extcap-interface CAPTURino --extcap-dlts)
+set_property(TEST Release_ArgExtcapInterfaceCapturinoDlt
+              PROPERTY PASS_REGULAR_EXPRESSION "dlt {number=[1-9]?[1-9]?[0-9]?}{name=[0-9A-Za-z]+}{display=[0-9A-Za-z ]+}")
+
+# TODO: not sure how the config output of an extcap interface shall be checked          
+add_test(NAME Release_ArgExtcapInterfaceCapturinoConfig
+          COMMAND ${CMAKE_CURRENT_BINARY_DIR}/../CapturinoPlugin${CMAKE_EXECUTABLE_SUFFIX} --extcap-interface CAPTURino --extcap-config)
+set_property(TEST Release_ArgExtcapInterfaceCapturinoConfig
+              PROPERTY PASS_REGULAR_EXPRESSION "[ ]*")
+              

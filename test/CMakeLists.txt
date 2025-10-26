@@ -1,0 +1,1 @@
+include(releasetests.ctest)
